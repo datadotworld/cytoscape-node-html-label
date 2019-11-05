@@ -248,12 +248,11 @@ interface CytoscapeNodeHtmlParams {
       let stl = _titlesContainer.style;
       stl.position = 'absolute';
       stl['z-index'] = 10;
+      stl.cursor = 'pointer';
       stl.width = '500px';
-      stl['pointer-events'] = 'none';
       stl.margin = '0px';
       stl.padding = '0px';
       stl.border = '0px';
-      stl.outline = '0px';
       stl.outline = '0px';
 
 

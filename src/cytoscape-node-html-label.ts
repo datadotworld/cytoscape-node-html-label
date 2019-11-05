@@ -12,6 +12,7 @@ interface CytoscapeNodeHtmlParams {
   valignBox?: IVAlign;
   cssClass?: string | string[];
   tpl?: (d: any) => string;
+  clickHandler?: (event: Event) => any;
 }
 
 (function () {
@@ -160,7 +161,7 @@ interface CytoscapeNodeHtmlParams {
   /**
    * LabelContainer
    * Html manipulate, find and upgrade nodes
-   * it don't know about cy.
+   * that don't know about cy.
    */
   class LabelContainer {
     private _elements: HashTableElements;
@@ -179,6 +180,7 @@ interface CytoscapeNodeHtmlParams {
         cur.updatePosition(payload.position);
       } else {
         let nodeElem = document.createElement("div");
+        nodeElem.addEventListener('click', param.clickHandler);
         this._node.appendChild(nodeElem);
 
         this._elements[id] = new LabelElement({

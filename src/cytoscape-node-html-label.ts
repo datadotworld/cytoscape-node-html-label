@@ -10,7 +10,7 @@ interface CytoscapeNodeHtmlParams {
   valign?: IVAlign;
   halignBox?: IHAlign;
   valignBox?: IVAlign;
-  cssClass?: string;
+  cssClass?: string | string[];
   tpl?: (d: any) => string;
 }
 
@@ -126,11 +126,15 @@ interface CytoscapeNodeHtmlParams {
       this._renderPosition(pos);
     }
 
-    private initStyles(cssClass: string) {
+    private initStyles(cssClass: string | string[]) {
       let stl = this._node.style;
       stl.position = 'absolute';
       if (cssClass && cssClass.length) {
-        this._node.classList.add(cssClass);
+        if (Array.isArray(cssClass)) {
+          this._node.classList.add(...cssClass);
+        } else {
+          this._node.classList.add(cssClass);
+        }
       }
     }
 

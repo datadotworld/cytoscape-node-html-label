@@ -65,6 +65,7 @@ cyInstance.nodeHtmlLabel(
         valignBox: 'center', // title relative box vertical position. Can be 'top',''center, 'bottom'
         cssClass: '', // any classes will be as attribute of <div> container for every title
         tpl: function(data){return '<span>' + data + '</span>';} // your html template here
+        clickHandler: function(event){ window.location = event.id; }
     }
 ]
     );
@@ -97,7 +98,8 @@ cyInstance.nodeHtmlLabel([{
         halignBox: "left",
         tpl: function(data) {
             return '<p class="cy-title__p1">' + data.id + '</p>' + '<p  class="cy-title__p2">' + data.name + '</p>';
-        }
+        },
+        clickHandler: function(event) { window.location = event.target.id }
     },
     {
         query: '.l2',
@@ -112,12 +114,13 @@ Demo here: https://kaluginserg.github.io/cytoscape-node-html-label/
 
 
 ## How to build and develop:
-1) Run `npm start`
+1) Run `yarn` to install dependencies
+1) Run `yarn start`
 1) Create change in src/cytoscape-node-html-label.ts
-1) When finished => `npm run test`
-1) Prepare js and min files: `npm run build`
+1) When finished => `yarn test`
+1) Prepare js and min files: `yarn build`
 1) `git commit`
 
 Then, for version update and publish:
 1) Create new npm version: `gulp patch`, `gulp feature` or `gulp release`
-1) `npm publish`
+1) `yarn publish`

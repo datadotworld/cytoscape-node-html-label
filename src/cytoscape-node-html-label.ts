@@ -10,8 +10,11 @@ interface CytoscapeNodeHtmlParams {
   valign?: IVAlign;
   halignBox?: IHAlign;
   valignBox?: IVAlign;
-  cssClass?: string;
+  cssClass?: string | string[];
   tpl?: (d: any) => string;
+  clickHandler?: (event: Event) => void;
+  hoverHandler?: (event: Event) => void;
+  exitHandler?: (event: Event) => void;
 }
 
 (function () {
@@ -126,11 +129,15 @@ interface CytoscapeNodeHtmlParams {
       this._renderPosition(pos);
     }
 
-    private initStyles(cssClass: string) {
+    private initStyles(cssClass: string | string[]) {
       let stl = this._node.style;
       stl.position = 'absolute';
       if (cssClass && cssClass.length) {
-        this._node.classList.add(cssClass);
+        if (Array.isArray(cssClass)) {
+          this._node.classList.add(...cssClass);
+        } else {
+          this._node.classList.add(cssClass);
+        }
       }
     }
 
@@ -156,7 +163,7 @@ interface CytoscapeNodeHtmlParams {
   /**
    * LabelContainer
    * Html manipulate, find and upgrade nodes
-   * it don't know about cy.
+   * that don't know about cy.
    */
   class LabelContainer {
     private _elements: HashTableElements;
@@ -175,6 +182,11 @@ interface CytoscapeNodeHtmlParams {
         cur.updatePosition(payload.position);
       } else {
         let nodeElem = document.createElement("div");
+        param.clickHandler && nodeElem.addEventListener('click', param.clickHandler);
+        param.hoverHandler && nodeElem.addEventListener('mouseenter', param.hoverHandler);
+        param.exitHandler && nodeElem.addEventListener('mouseleave', param.exitHandler);
+        const idParts = id.split('.')
+        nodeElem.id = idParts[idParts.length - 1]
         this._node.appendChild(nodeElem);
 
         this._elements[id] = new LabelElement({
@@ -244,12 +256,11 @@ interface CytoscapeNodeHtmlParams {
       let stl = _titlesContainer.style;
       stl.position = 'absolute';
       stl['z-index'] = 10;
+      stl.cursor = 'pointer';
       stl.width = '500px';
-      stl['pointer-events'] = 'none';
       stl.margin = '0px';
       stl.padding = '0px';
       stl.border = '0px';
-      stl.outline = '0px';
       stl.outline = '0px';
 
 

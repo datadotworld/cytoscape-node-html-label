@@ -9,6 +9,9 @@ interface CytoscapeNodeHtmlParams {
     valign?: IVAlign;
     halignBox?: IHAlign;
     valignBox?: IVAlign;
-    cssClass?: string;
+    cssClass?: string | string[];
     tpl?: (d: any) => string;
+    clickHandler?: (event: Event) => void;
+    hoverHandler?: (event: Event) => void;
+    exitHandler?: (event: Event) => void;
 }

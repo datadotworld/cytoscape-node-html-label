@@ -60,10 +60,16 @@
             this._renderPosition(pos);
         };
         LabelElement.prototype.initStyles = function (cssClass) {
+            var _a;
             var stl = this._node.style;
             stl.position = 'absolute';
             if (cssClass && cssClass.length) {
-                this._node.classList.add(cssClass);
+                if (Array.isArray(cssClass)) {
+                    (_a = this._node.classList).add.apply(_a, cssClass);
+                }
+                else {
+                    this._node.classList.add(cssClass);
+                }
             }
         };
         LabelElement.prototype._renderPosition = function (position) {
@@ -98,6 +104,11 @@
             }
             else {
                 var nodeElem = document.createElement("div");
+                param.clickHandler && nodeElem.addEventListener('click', param.clickHandler);
+                param.hoverHandler && nodeElem.addEventListener('mouseenter', param.hoverHandler);
+                param.exitHandler && nodeElem.addEventListener('mouseleave', param.exitHandler);
+                var idParts = id.split('.');
+                nodeElem.id = idParts[idParts.length - 1];
                 this._node.appendChild(nodeElem);
                 this._elements[id] = new LabelElement({
                     node: nodeElem,
@@ -158,12 +169,11 @@
             var stl = _titlesContainer.style;
             stl.position = 'absolute';
             stl['z-index'] = 10;
+            stl.cursor = 'pointer';
             stl.width = '500px';
-            stl['pointer-events'] = 'none';
             stl.margin = '0px';
             stl.padding = '0px';
             stl.border = '0px';
-            stl.outline = '0px';
             stl.outline = '0px';
             _cyCanvas.parentNode.appendChild(_titlesContainer);
             return new LabelContainer(_titlesContainer);

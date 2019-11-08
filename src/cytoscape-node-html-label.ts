@@ -12,7 +12,9 @@ interface CytoscapeNodeHtmlParams {
   valignBox?: IVAlign;
   cssClass?: string | string[];
   tpl?: (d: any) => string;
-  clickHandler?: (event: Event) => any;
+  clickHandler?: (event: Event) => void;
+  hoverHandler?: (event: Event) => void;
+  exitHandler?: (event: Event) => void;
 }
 
 (function () {
@@ -180,7 +182,11 @@ interface CytoscapeNodeHtmlParams {
         cur.updatePosition(payload.position);
       } else {
         let nodeElem = document.createElement("div");
-        nodeElem.addEventListener('click', param.clickHandler);
+        param.clickHandler && nodeElem.addEventListener('click', param.clickHandler);
+        param.hoverHandler && nodeElem.addEventListener('mouseenter', param.hoverHandler);
+        param.exitHandler && nodeElem.addEventListener('mouseleave', param.exitHandler);
+        const idParts = id.split('.')
+        nodeElem.id = idParts[idParts.length - 1]
         this._node.appendChild(nodeElem);
 
         this._elements[id] = new LabelElement({

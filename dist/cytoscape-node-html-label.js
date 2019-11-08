@@ -104,7 +104,11 @@
             }
             else {
                 var nodeElem = document.createElement("div");
-                nodeElem.addEventListener('click', param.clickHandler);
+                param.clickHandler && nodeElem.addEventListener('click', param.clickHandler);
+                param.hoverHandler && nodeElem.addEventListener('mouseenter', param.hoverHandler);
+                param.exitHandler && nodeElem.addEventListener('mouseleave', param.exitHandler);
+                var idParts = id.split('.');
+                nodeElem.id = idParts[idParts.length - 1];
                 this._node.appendChild(nodeElem);
                 this._elements[id] = new LabelElement({
                     node: nodeElem,

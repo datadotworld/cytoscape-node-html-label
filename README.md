@@ -65,7 +65,9 @@ cyInstance.nodeHtmlLabel(
         valignBox: 'center', // title relative box vertical position. Can be 'top',''center, 'bottom'
         cssClass: '', // any classes will be as attribute of <div> container for every title
         tpl: function(data){return '<span>' + data + '</span>';} // your html template here
-        clickHandler: function(event){ window.location = event.id; }
+        clickHandler: function(event){ window.location = event.id; } // handle clicks on the label
+	exitHandler: function(_event){ this.hideTooltip(); } // handle the cursor exiting the label
+	hoverHandler: function(_event){ this.showTooltip(); } // handle the cursor entering the label
     }
 ]
     );

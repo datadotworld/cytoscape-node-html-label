@@ -1,8 +1,8 @@
 {
-  "name": "cytoscape-node-html-label",
+  "name": "@datadotworld/cytoscape-node-html-label",
   "version": "1.2.0",
   "description": "labels for cytoscape nodes",
-  "author": "Kalugin Sergey <kalugin.perm@gmail.com> (https://github.com/kaluginserg)",
+  "author": "Kalugin Sergqey <kalugin.perm@gmail.com> (https://github.com/kaluginserg)",
   "main": "./dist/cytoscape-node-html-label.js",
   "spm": {
     "main": "./dist/cytoscape-node-html-label.js"

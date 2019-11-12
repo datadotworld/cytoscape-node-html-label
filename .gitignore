@@ -5,3 +5,4 @@ node_modules/
 **/*.map
 src/**/*.js
 src/**/*.map
+.npmrc

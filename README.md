@@ -22,15 +22,7 @@ Demo: https://kaluginserg.github.io/cytoscape-node-html-label/
 ## Usage instructions
 
 Download the library:
- * via npm: `npm install cytoscape-node-html-label`,
- * via bower: `bower install cytoscape-node-html-label`, or
- * via direct download from the repository (probably from a tag).
-
-#### Plain HTML/JS has extension registered for you automatically:
-```html
-<script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
-<script src="cytoscape-node-html-label.js"></script>
-```
+ * via npm: `npm install @datadotworld/cytoscape-node-html-label`
 
 #### RequireJs approach:
 `require()` the library as appropriate for your project:
@@ -38,13 +30,13 @@ Download the library:
 CommonJS:
 ```js
 var cytoscape = require('cytoscape');
-var nodeHtmlLabel = require('cytoscape-node-html-label');
+var nodeHtmlLabel = require('@datadotworld/cytoscape-node-html-label');
 nodeHtmlLabel( cytoscape ); // register extension
 ```
 
 AMD:
 ```js
-require(['cytoscape', 'cytoscape-node-html-label'], function( cytoscape, nodeHtmlLabel ){
+require(['cytoscape', '@datadotworld/cytoscape-node-html-label'], function( cytoscape, nodeHtmlLabel ){
   nodeHtmlLabel( cytoscape ); // register extension
 });
 ```
@@ -124,5 +116,5 @@ Demo here: https://kaluginserg.github.io/cytoscape-node-html-label/
 1) `git commit`
 
 Then, for version update and publish:
-1) Create new npm version: `gulp patch`, `gulp feature` or `gulp release`
+1) Copy the appropriate `.npmrc` to the working directory to be able to publish to Artifactory.
 1) `yarn publish`

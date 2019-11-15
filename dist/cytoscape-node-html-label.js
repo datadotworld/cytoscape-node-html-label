@@ -169,7 +169,7 @@
             var stl = _titlesContainer.style;
             stl.position = 'absolute';
             stl['z-index'] = 10;
-            stl.cursor = 'pointer';
+            stl.cursor = 'default';
             stl.width = '500px';
             stl.margin = '0px';
             stl.padding = '0px';
